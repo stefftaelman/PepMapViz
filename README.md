@@ -1,33 +1,147 @@
-PepMapViz: A Versatile Toolkit for Peptide Mapping, Visualization, and Comparative Exploration ================
+# PepMapViz: Peptide Mapping and Visualization Tool
 
-## PepMapViz
+PepMapViz is an R package that helps researchers visualize peptides mapped to protein sequences. It can highlight mutations, post-translational modifications, and compare different experimental conditions through an easy-to-use web interface.
 
-PepMapViz is a versatile R visualization package that empowers researchers with comprehensive visualization tools for seamlessly mapping peptides to protein sequences, identifying distinct domains and regions of interest, accentuating mutations, and highlighting post-translational modifications, all while enabling comparisons across diverse experimental conditions. Potential applications of PepMapViz include the visualization of cross-software mass spectrometry results at the peptide level for specific protein and domain details in a linearized format and post-translational modification coverage across different experimental conditions; unraveling insights into disease mechanisms. It also enables visualization of MHC-presented peptide clusters in different antibody regions predicting immunogenicity in antibody drug development.
+## 🚀 Quick Start: Run the Shiny App
 
-## Installation
+**Want to use PepMapViz right away?** Follow these simple steps to get the interactive web application running on your computer:
 
-You can install the development version of PepMapViz from GitHub using the `devtools` package.
+### Method 1: Docker (Recommended - Easiest!)
 
-``` r
-# Install devtools if you haven't already
-install.packages("devtools")
+If you have Docker installed on your computer, this is the fastest way:
 
-# Install PepMapViz from the package
-devtools::build()
-devtools::install()
+1. **Download this repository:**
+   - Click the green "Code" button above
+   - Select "Download ZIP"
+   - Extract the ZIP file to a folder on your computer
+
+2. **Open Terminal/Command Prompt:**
+   - **Windows:** Press `Windows + R`, type `cmd`, press Enter
+   - **Mac:** Press `Cmd + Space`, type "Terminal", press Enter
+   - **Linux:** Press `Ctrl + Alt + T`
+
+3. **Navigate to the downloaded folder:**
+   ```bash
+   cd path/to/PepMapViz-main
+   ```
+   (Replace `path/to/PepMapViz-main` with the actual path where you extracted the files)
+
+4. **Run the Docker container:**
+   ```bash
+   docker-compose up
+   ```
+
+5. **Open your web browser and go to:**
+   ```
+   http://localhost:3838
+   ```
+
+🎉 **That's it!** The PepMapViz app should now be running in your browser.
+
+To stop the app, press `Ctrl + C` in the terminal.
+
+---
+
+### Method 2: Install R and Run Locally
+
+If you don't have Docker or prefer to run R directly:
+
+#### Step 1: Install Required Software
+
+1. **Install R:**
+   - Go to https://cran.r-project.org/
+   - Download and install R for your operating system
+
+2. **Install RStudio (Optional but Recommended):**
+   - Go to https://posit.co/download/rstudio-desktop/
+   - Download and install RStudio Desktop
+
+#### Step 2: Download and Install PepMapViz
+
+1. **Download this repository** (same as Method 1, steps 1-3)
+
+2. **Open R or RStudio**
+
+3. **Set your working directory to the downloaded folder:**
+   ```r
+   setwd("path/to/PepMapViz-main")
+   ```
+
+4. **Install required packages:**
+   ```r
+   # Install renv for package management
+   install.packages("renv")
+   
+   # Restore the project environment
+   renv::restore()
+   ```
+
+5. **Install PepMapViz:**
+   ```r
+   # Install devtools if you haven't already
+   install.packages("devtools")
+   
+   # Install PepMapViz from the current directory
+   devtools::install(".")
+   ```
+
+#### Step 3: Run the Shiny App
+
+```r
+# Load the package
+library(PepMapViz)
+
+# Launch the interactive web app
+run_pepmap_app()
 ```
 
-## Features
+The app will open in your default web browser automatically!
 
-1.  Mapping peptides to protein sequences
-2.  Identifying distinct domains and regions of interest
-3.  Accentuating mutations
-4.  Highlighting post-translational modifications
-5.  Enabling comparisons across diverse experimental conditions
+---
 
-## Usage
+## 💡 What Can You Do With PepMapViz?
 
-This is a basic example which shows you how to solve a common problem:
+- **Map peptides** to protein sequences
+- **Identify domains** and regions of interest
+- **Highlight mutations** and variations
+- **Visualize post-translational modifications**
+- **Compare** different experimental conditions
+- **Analyze mass spectrometry** results at the peptide level
+
+## 📊 Using Your Own Data
+
+Once the app is running, you can:
+1. Upload your own peptide data files
+2. Configure visualization parameters
+3. Generate interactive plots
+4. Export results for publications
+
+The app supports multiple data formats including PEAKS, MaxQuant, Spectronaut, and others.
+
+---
+
+## 🛠 Troubleshooting
+
+### Docker Issues
+- **Docker not found:** Install Docker from https://docker.com
+- **Permission denied:** Try running with `sudo` (Linux/Mac)
+- **Port 3838 in use:** Stop other applications using that port
+
+### R Installation Issues
+- **Package installation fails:** Update R to the latest version
+- **Missing dependencies:** Run `install.packages(c("shiny", "ggplot2", "DT"))` first
+- **renv restore fails:** Delete the `renv` folder and try `install.packages("devtools"); devtools::install(".")`
+
+### Need Help?
+- Check the [Issues page](https://github.com/stefftaelman/PepMapViz/issues) for common problems
+- Create a new issue if you encounter bugs
+- Review the example data in the `inst/extdata/` folder
+
+---
+
+## 📋 For Advanced Users
+
+### Command Line Usage Example
 
 ``` r
 library(PepMapViz)
@@ -196,25 +310,48 @@ print(p_psm)
 
 ![Example PSM plot](inst/extdata/example_plot.png)
 
-## Getting Started
+---
 
-### Launching the Shiny App
+## ⚙️ System Requirements
 
-You can interactively explore your data and visualization options using the built-in Shiny application provided by PepMapViz. Simply run the following command in your R console to launch the app:
+- **For Docker method:** Docker Desktop installed
+- **For R method:** R version 4.0 or higher
+- **Operating Systems:** Windows, macOS, or Linux
+- **Browser:** Chrome, Firefox, Safari, or Edge
+- **Memory:** At least 4GB RAM recommended
 
-``` r
-PepMapViz::run_pepmap_app()
+## 📁 Project Structure
+
+- `inst/shiny_apps/PepMapVizApp/` - Shiny web application
+- `R/` - Core R functions and algorithms  
+- `inst/extdata/` - Example datasets for testing
+- `man/` - Documentation files
+- `Docker*` - Docker configuration files for easy deployment
+
+## 🔄 Updates and Contributing
+
+This is a fork of the original [Genentech/PepMapViz](https://github.com/Genentech/PepMapViz) with enhanced Docker support and improved ease of use.
+
+### Getting Updates
+To get the latest features from the original repository:
+```bash
+git pull upstream master
 ```
 
-This will open a user-friendly graphical interface for peptide mapping, visualization, and comparative exploration.
+### Contributing
+1. Fork this repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-For a detailed guide on how to use PepMapViz, please refer to our vignette and docuemntation under inst/doc.
+---
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License
+This project is licensed under the MIT License.
 
-Copyright (c) 2024, Genentech, Inc.
+**Original work:** Copyright (c) 2024, Genentech, Inc.  
+**Docker enhancements:** Copyright (c) 2025, stefftaelman
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -222,4 +359,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## Acknowledgments
+## 🙏 Acknowledgments
+
+- Original PepMapViz package developed by Genentech, Inc.
+- Docker containerization and usability improvements by stefftaelman
+- Built with R, Shiny, ggplot2, and other amazing open-source tools

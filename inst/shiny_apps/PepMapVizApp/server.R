@@ -2,9 +2,20 @@
 library(DT)
 library(rlang)
 library(data.table)
-library(mzID)
-library(MSnbase)
 library(ggplot2)
+
+# Optional Bioconductor packages (only load if available)
+if (requireNamespace("mzID", quietly = TRUE)) {
+  library(mzID)
+} else {
+  warning("mzID package not available. Some mzID file reading functionality may be limited.")
+}
+
+if (requireNamespace("MSnbase", quietly = TRUE)) {
+  library(MSnbase)
+} else {
+  warning("MSnbase package not available. Some mass spectrometry functionality may be limited.")
+}
 
 # Define default PTM table
 PTM_table <- data.frame(

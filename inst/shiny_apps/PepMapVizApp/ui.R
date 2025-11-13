@@ -1,6 +1,9 @@
 # Increase to 30MB (adjust the value as needed)
 options(shiny.maxRequestSize = 1000 * 1024^2)  # 30MB in bytes
 
+# Load required libraries
+library(DT)
+
 # inst/shiny-apps/PepMapVizApp/ui.R
 fluidPage(
   titlePanel("PepMapViz - Interactive Peptide Visualization"),

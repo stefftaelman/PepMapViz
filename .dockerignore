@@ -1,0 +1,27 @@
+# Git files
+.git
+.gitignore
+
+# R environment files
+.Rprofile
+.RData
+.Rhistory
+renv/
+
+# Development files
+.vscode/
+.DS_Store
+*.log
+
+# Documentation build artifacts
+docs/
+_site/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Local development artifacts
+.env
+.env.local
